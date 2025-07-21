@@ -1,3 +1,22 @@
+# Health Monitoring Dashboard
+
+## Requirements
+1. Build a responsive UI that matches the attached dashboard layout using React + Tailwind + TypeScript
+2. Fetch dashboard data (mocked from a local data.json or via a mocked API server)
+3. Implement the following components:
+   - Alert Cards (Top 2 boxes)
+   - Health Indicators (Heart Rate, Temperature, Noise)
+4. Ensure the Alert and Noise Index Box Critical Animation work
+5. Add a unit test for any one key component
+
+## Implementation Plan
+- [x] Initialize React + TypeScript project
+- [x] Set up Tailwind CSS
+- [ ] Create mock data.json for dashboard data
+- [ ] Build Alert Cards and Health Indicator components
+- [ ] Implement critical state animation
+- [ ] Add unit test for a key component
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
