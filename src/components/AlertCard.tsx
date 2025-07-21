@@ -1,6 +1,7 @@
 import React from 'react';
 import { Alert } from '../types';
 import { AlarmClock, ChevronDown } from 'lucide-react';
+import '../deviceIconAnimation.css';
 
 interface AlertCardProps extends Alert {
   onButtonClick?: () => void;
@@ -8,7 +9,7 @@ interface AlertCardProps extends Alert {
 
 const iconMap: Record<string, JSX.Element> = {
   device: (
-    <span className="inline-block bg-pink-100 rounded-lg p-2 mr-3">
+    <span className="inline-block bg-pink-100 rounded-lg p-2 mr-3 animate-zoom-in-out">
       {/* Device icon SVG */}
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" fill="#EC4899"/><rect x="9" y="18" width="6" height="2" rx="1" fill="#fff"/></svg>
     </span>
@@ -19,7 +20,7 @@ const iconMap: Record<string, JSX.Element> = {
 };
 
 export const AlertCard: React.FC<AlertCardProps> = ({ icon, count, title, description, button, onButtonClick }) => (
-  <div className="flex items-center bg-white border-2 border-pink-200 rounded-xl p-4 mx-4 mb-4">
+  <div className={`flex items-center bg-white rounded-xl p-4 mx-4 mb-4 ${icon === 'device' ? 'border-2 border-pink-500' : 'border-2 border-pink-200'}`}>
     {iconMap[icon]}
     <div className="flex-1">
       <div className="flex items-center text-lg font-semibold">

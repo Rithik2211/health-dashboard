@@ -4,6 +4,7 @@ import { Heart, Thermometer, Waves, Info, AlertTriangle, OctagonAlert, HelpCircl
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import '../noiseCardAnimation.css';
 
 interface HealthIndicatorProps {
   indicator: HealthIndicatorType;
@@ -19,8 +20,9 @@ const heartChartData = [
 
 export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) => {
   const isCritical = indicator.riskLevel === 'CRITICAL';
+  const isNoise = indicator.id === 'noise';
   return (
-    <div className={`flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200`}
+    <div className={`relative flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200 transition-shadow ${isNoise ? 'hover:shadow-lg hover:shadow-pink-400/50 border border-pink-400' : ''}`}
       >
       {/* Heart Card */}
       {indicator.id === 'heart' && (
@@ -82,7 +84,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
           </div>
           {/* Card Temperature */}
           <div className='flex flex-col gap-3 items-center justify-center bg-yellow-100 rounded-xl p-2 m-2'>
-            <div className="font-semibold text-base mb-1">{indicator.alert}</div>
+            <div className="inline-flex items-center gap-2 font-semibold text-base mb-1">{indicator.alert}<HelpCircle className='w-4 h-4 text-yellow-500'/></div>
             <div className="w-40 h-40 mb-2">
               <CircularProgressbar
                 value={75}
@@ -105,7 +107,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
       )}
       {/* Noise Card */}
       {indicator.id === 'noise' && (
-        <div className='flex flex-col h-full justify-between'>
+        <div className='flex flex-col h-full justify-between z-30'>
           <div className="flex items-center justify-between mb-2">
             <span className="flex items-center gap-1 text-xs font-semibold text-gray-400">
               <Waves className="w-4 h-4 mr-1 text-gray-400" />

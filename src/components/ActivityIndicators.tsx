@@ -90,7 +90,7 @@ const ActivityIndicators: React.FC<ActivityIndicatorsProps> = ({ indicator }) =>
             <DoorOpen className="w-4 h-4 mr-1 text-gray-400" />
             OPEN SPACE TIME
           </span>
-          <div className='flex flex-col items-center justify-center gap-3 bg-gray-100 rounded-xl p-2 m-2 flex-1'>
+          <div className='flex flex-col items-center justify-center gap-6 bg-gray-100 rounded-xl p-2 m-2 flex-1'>
             <div className="w-32 h-32 mb-2">
               <CircularProgressbar
                 value={40}

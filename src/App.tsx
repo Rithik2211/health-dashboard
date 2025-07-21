@@ -5,7 +5,7 @@ import { fetchDashboardData } from './utils/fetchDashboardData';
 import { Alert, HealthIndicator as HealthIndicatorType } from './types';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
-import { ChevronLeft, ChevronRight, PersonStanding } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Menu, PersonStanding } from 'lucide-react';
 import ActivityIndicators from './components/ActivityIndicators';
 
 const App: React.FC = () => {
@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [healthIndicators, setHealthIndicators] = useState<HealthIndicatorType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     fetchDashboardData()
@@ -32,12 +33,33 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen">
-      {/* Sidebar: fixed, full height, no scroll */}
-      <div className="fixed left-2 top-2 bottom-2 h-screen z-20 w-64">
+      {/* Hamburger for mobile */}
+      <button
+        className="md:hidden fixed top-4 left-4 z-40 bg-white p-2 rounded-lg shadow border border-gray-200"
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open sidebar"
+      >
+        <Menu className='w-8 h-8 text-pink-500' />
+      </button>
+      {/* Sidebar overlay for mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black bg-opacity-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      {/* Sidebar drawer */}
+      <div
+        className={`
+          fixed top-2 left-2 h-screen z-40 w-64 transition-transform rounded-lg border-gray-200
+          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} p-2
+          md:translate-x-0 md:static md:block
+        `}
+      >
         <Sidebar />
       </div>
-      {/* Main content: margin-left to account for sidebar width, scrollable */}
-      <main className="flex-1 ml-64 overflow-y-auto h-screen bg-gray-50">
+      {/* Main content: margin-left for sidebar only on md+ */}
+      <main className="flex-1 ml-34 overflow-y-auto h-screen bg-gray-50">
         <Header />
         <div className="mx-auto w-full sm:px-4 md:px-0">
           {/* Top Alert Cards */}
@@ -55,8 +77,8 @@ const App: React.FC = () => {
             </div>
           </div>
           {/* Health Indicators */}
-          <div className="bg-gray-100 rounded-xl p-4 sm:p-6 mx-8">
-             {/* Health Section */}
+          <div className="bg-gray-100 rounded-xl p-4 sm:p-6 m-8">
+            {/* Health Section */}
             <div className='flex flex-row items-center justify-between text-center py-2'>
               <h2 className="flex items-center text-lg font-bold mb-4">
                 <PersonStanding className="w-5 h-5 text-black mr-2" />
@@ -66,7 +88,6 @@ const App: React.FC = () => {
                 <span className="font-semibold text-gray-500 text-sm">BETA</span>
               </div>
             </div>
-          
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {healthIndicators.map((indicator) => (
                 <HealthIndicator key={indicator.id} indicator={indicator} />
@@ -77,7 +98,6 @@ const App: React.FC = () => {
               <PersonStanding className="w-5 h-5 text-black mr-2" />
               Activity Indicators
             </h2>
-          
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {healthIndicators.map((indicator) => (
                 <ActivityIndicators key={indicator.id} indicator={indicator} />
