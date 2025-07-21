@@ -1,6 +1,6 @@
 import React from 'react';
 import { HealthIndicator as HealthIndicatorType } from '../types';
-import { AlertTriangle, Footprints, ChartBarIncreasing, DoorOpen, MoveUpRight } from 'lucide-react';
+import { Footprints, ChartBarIncreasing, DoorOpen, MoveUpRight, Lightbulb } from 'lucide-react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -32,7 +32,7 @@ const ActivityIndicators: React.FC<ActivityIndicatorsProps> = ({ indicator }) =>
             DAILY STEPS
           </span>
           <div className='flex flex-col items-center justify-center gap-6 bg-gray-100 rounded-xl p-2 m-2 flex-1'>
-            <div className="w-32 h-32 mb-2">
+            <div className="w-40 h-40 mb-2">
               <CircularProgressbar
                 value={60}
                 text="5678"
@@ -91,7 +91,7 @@ const ActivityIndicators: React.FC<ActivityIndicatorsProps> = ({ indicator }) =>
             OPEN SPACE TIME
           </span>
           <div className='flex flex-col items-center justify-center gap-6 bg-gray-100 rounded-xl p-2 m-2 flex-1'>
-            <div className="w-32 h-32 mb-2">
+            <div className="w-40 h-40 mb-2">
               <CircularProgressbar
                 value={40}
                 text="23min"
@@ -104,7 +104,7 @@ const ActivityIndicators: React.FC<ActivityIndicatorsProps> = ({ indicator }) =>
               />
             </div>
             <div className="bg-gray-50 rounded-lg p-2 flex items-center mt-2 text-xs text-gray-500 border border-gray-200">
-              <AlertTriangle className="w-4 h-4 mr-2" />
+              <Lightbulb className="w-4 h-4 mr-2" />
               Suggested open-air time: 30 min/daily
             </div>
           </div>

@@ -13,7 +13,7 @@ export const Sidebar: React.FC = () => (
     <div className="flex items-center mb-8">
       <span className="text-2xl font-bold text-pink-600 tracking-tight">SOL-X</span>
     </div>
-    <div className="bg-gray-200 rounded-lg p-2 flex justify-between items-center mb-8">
+    <div className="bg-gray-200 rounded-lg p-2 flex justify-between items-center mb-4">
       <Watch className='w-5 h-5 text-gray-500' />
       <div>
         <div className="text-xs text-black font-bold">DEVICE CONNECTED</div>
@@ -24,6 +24,7 @@ export const Sidebar: React.FC = () => (
         <span className="ml-auto text-white font-bold text-xs">85%</span>
       </div>
     </div>
+    <div className="border-b border-gray-300 mb-4" />
     <nav className="flex-1">
       <ul className="space-y-2">
         {navItems.map((item) => (
@@ -35,7 +36,7 @@ export const Sidebar: React.FC = () => (
               <span className="mr-3 text-lg">{item.icon}</span>
               {item.label}
               {item.badge && (
-                <span className="ml-auto bg-pink-500 text-white text-xs rounded-full px-2 py-0.5 font-bold">{item.badge}</span>
+                <span className="ml-auto bg-pink-500 text-white text-xs rounded-full px-1.5 py-0.5 font-bold">{item.badge}</span>
               )}
             </a>
           </li>

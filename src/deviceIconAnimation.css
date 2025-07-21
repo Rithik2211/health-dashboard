@@ -1,3 +1,16 @@
+@keyframes innerRingFade {
+  0%, 10%   { opacity: 1; }
+  15%, 65%  { opacity: 1; }  /* Stay visible while outer ring animates */
+  70%, 80% { opacity: 1; }
+  85%, 100% { opacity: 0; }
+}
+
+@keyframes outerRingFade {
+  0%, 20%   { opacity: 0; }
+  25%, 55%  { opacity: 1; }
+  60%, 100% { opacity: 0; }
+}
+
 @keyframes zoom-in-out {
   0%, 100% {
     transform: scale(1);
@@ -9,3 +22,11 @@
 .animate-zoom-in-out {
   animation: zoom-in-out 1.2s ease-in-out infinite;
 } 
+
+.animate-inner-ring {
+  animation: innerRingFade 2s ease-in-out infinite;
+}
+
+.animate-outer-ring {
+  animation: outerRingFade 1s ease-in-out infinite;
+}

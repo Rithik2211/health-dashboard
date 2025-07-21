@@ -1,6 +1,6 @@
 import React from 'react';
 import { HealthIndicator as HealthIndicatorType } from '../types';
-import { Heart, Thermometer, Waves, Info, AlertTriangle, OctagonAlert, HelpCircle, MoveUpRight } from 'lucide-react';
+import { Heart, Thermometer, Waves, AlertTriangle, OctagonAlert, HelpCircle, MoveUpRight, Lightbulb } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -22,8 +22,12 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
   const isCritical = indicator.riskLevel === 'CRITICAL';
   const isNoise = indicator.id === 'noise';
   return (
-    <div className={`relative flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200 transition-shadow ${isNoise ? 'hover:shadow-lg hover:shadow-pink-400/50 border border-pink-400' : ''}`}
-      >
+    <div className={`relative inline-block flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200 transition-shadow 
+      ${isNoise ? 'border-animated hover:shadow-lg hover:shadow-pink-400/50' : ''}`}
+    >
+      {/* {
+        isNoise && <span className="absolute inset-0 z-0 rounded-xl ring-4 ring-pink-400 ring-offset-[12px] animate-outer-ring"></span>
+      } */}
       {/* Heart Card */}
       {indicator.id === 'heart' && (
         <div className='flex flex-col h-full justify-between'>
@@ -36,7 +40,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
           </div>
           {/* Card Heart Risk */}
           <div className='flex flex-col items-center justify-center bg-gray-100 rounded-xl p-2 m-2'>
-            <div className="inline-flex items-center gap-2 font-semibold text-base mb-1">{indicator.alert} <HelpCircle className='w-4 h-4 text-pink-500'/></div>
+            <div className="inline-flex items-center gap-2 font-semibold text-base mb-1">{indicator.alert} <HelpCircle className='w-4 h-4 text-pink-500 bg-pink-200 rounded-full'/></div>
             <div className='flex flex-row items-center justify-between w-full px-4'>
               <div className='flex flex-col'>
                 <div className="text-xs text-gray-400">AHR </div>
@@ -65,7 +69,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
               </ResponsiveContainer>
             </div>
             <div className="bg-gray-50 rounded-lg p-2 flex items-center mt-2 text-xs text-gray-500 border border-gray-200">
-              <Info className="w-4 h-4 mr-2" />
+              <Lightbulb className="w-4 h-4 mr-2" />
               Rest 2+ hours and avoid intense tasks.
             </div>
           </div>
@@ -98,7 +102,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
               />
             </div>
             <div className="bg-gray-50 rounded-lg p-2 flex items-center mt-2 text-xs text-gray-500 border border-gray-200">
-              <Info className="w-4 h-4 mr-2" />
+              <Lightbulb className="w-4 h-4 mr-2" />
               Take a 15-minute break in shade. Drink 500ml water
             </div>
           </div>
@@ -118,8 +122,8 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
           {/* Card Noise */}
           <div className='flex flex-col items-center justify-center gap-3 bg-pink-100 rounded-xl p-2 m-2'>
             <div className="inline-flex items-center gap-2 font-semibold text-base mb-1">{indicator.alert}<HelpCircle className='w-4 h-4 text-pink-500'/></div>
-            <div className={`w-40 h-40 flex items-center justify-center rounded-full border-4 border-dashed ${isCritical ? 'border-pink-600 animate-pulse' : 'border-gray-200'} mb-2`}>
-              <span className="text-2xl font-bold text-red-600">{indicator.duration}</span>
+            <div className={`w-40 h-40 flex items-center justify-center rounded-full border-8 border-dashed ${isCritical ? 'border-pink-600' : 'border-gray-200'} mb-2`}>
+              <span className="text-2xl font-bold text-black">{indicator.duration}</span>
             </div>
             <div className="bg-gray-50 rounded-lg p-2 flex items-center mt-2 text-xs text-gray-500 border border-gray-200">
               <AlertTriangle className="w-5 h-5 mr-2 text-pink-500" />

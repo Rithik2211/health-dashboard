@@ -63,7 +63,7 @@ const App: React.FC = () => {
         <Header />
         <div className="mx-auto w-full sm:px-4 md:px-0">
           {/* Top Alert Cards */}
-          <div className="grid grid-rows-1 gap-4 mx-4 mb-8">
+          <div className="grid grid-rows-1 gap-4 mx-4 mb-8 border-b-2 border-gray-200">
             {alerts.map((alert) => (
               <AlertCard key={alert.id} {...alert} />
             ))}
