@@ -1,5 +1,7 @@
 # Health Monitoring Dashboard
 
+# [Deployed Site Here](https://health-dashboard-kcwp.vercel.app/)
+
 ## Requirements
 1. Build a responsive UI that matches the attached dashboard layout using React + Tailwind + TypeScript
 2. Fetch dashboard data (mocked from a local data.json or via a mocked API server)
@@ -12,10 +14,83 @@
 ## Implementation Plan
 - [x] Initialize React + TypeScript project
 - [x] Set up Tailwind CSS
-- [ ] Create mock data.json for dashboard data
-- [ ] Build Alert Cards and Health Indicator components
-- [ ] Implement critical state animation
-- [ ] Add unit test for a key component
+- [x] Create mock data.json for dashboard data
+- [x] Build Alert Cards and Health Indicator components
+- [x] Implement critical state animation
+- [x] Add unit test for a key component
+
+---
+
+## Architecture Overview
+
+### 1. **Project Structure**
+```
+health-dashboard/
+├── public/                # Static assets (data.json, favicon, etc.)
+├── src/
+│   ├── components/        # Reusable React components (AlertCard, HealthIndicator, Sidebar, etc.)
+│   ├── utils/             # Utility functions (e.g., data fetching)
+│   ├── types.ts           # TypeScript interfaces and types
+│   ├── App.tsx            # Main app layout and routing
+│   ├── index.tsx          # React entry point
+│   ├── index.css          # Tailwind and global styles
+│   └── ...
+├── tailwind.config.js     # Tailwind CSS configuration
+├── postcss.config.js      # PostCSS configuration
+├── vite.config.ts         # Vite configuration
+├── package.json           # Project dependencies and scripts
+└── README.md              # Project documentation
+```
+
+### 2. **Component Organization**
+- **AlertCard**: Displays alert summary (icon, count, title, description, action button). Device alert has animated icon and special border.
+- **HealthIndicator**: Shows health metrics (heart, temperature, noise) with charts, progress bars, and animated effects for critical/alert states.
+- **ActivityIndicators**: Shows activity metrics (steps, trends, open space time) with progress bars and charts.
+- **Sidebar**: Responsive navigation, always visible on desktop, drawer on mobile.
+- **Header**: Responsive top bar with user info, ship info, and notifications.
+
+### 3. **Data Flow**
+- **Mock Data**: Located in `public/data.json`.
+- **Fetching**: `src/utils/fetchDashboardData.ts` fetches and types data.
+- **Types**: All data is strongly typed via `src/types.ts`.
+- **Props**: Data is passed to components as props for rendering.
+
+### 4. **Styling & Animations**
+- **Tailwind CSS**: Used for all layout, spacing, color, and responsive design.
+- **Custom Animations**: Keyframes in global CSS for:
+  - Device icon zoom in/out
+  - Animated rings for device alert
+  - Rotating border for noise card
+  - Card hover shadows
+- **Conditional Classes**: Used to apply special effects only to certain cards (e.g., device, noise).
+
+### 5. **Responsiveness**
+- **Sidebar**: Fixed on desktop, slides in as a drawer on mobile (with overlay and hamburger menu).
+- **Header**: Collapses into a hamburger menu on mobile.
+- **Cards**: Grid layout adapts to screen size.
+
+### 6. **Testing**
+- **Unit Tests**: Example test for `AlertCard` using React Testing Library.
+
+---
+
+## How to Run
+1. Install dependencies: `npm install`
+2. Start dev server: `npm run dev`
+3. Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+## Customization & Extensibility
+- Add new cards/components in `src/components/`.
+- Update or extend data in `public/data.json`.
+- Add new animations in global CSS or Tailwind config.
+- Use TypeScript types for safety and scalability.
+
+---
+
+## Contact
+For questions or contributions, open an issue or pull request.
 
 # Getting Started with Create React App
 

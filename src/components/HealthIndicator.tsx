@@ -22,12 +22,17 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
   const isCritical = indicator.riskLevel === 'CRITICAL';
   const isNoise = indicator.id === 'noise';
   return (
-    <div className={`relative inline-block flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200 transition-shadow 
-      ${isNoise ? 'border-animated hover:shadow-lg hover:shadow-pink-400/50' : ''}`}
+    <div className={`relative flex flex-col bg-white rounded-xl p-4 shadow-sm border border-gray-200 transition-shadow 
+      ${isNoise ? 'hover:shadow-lg hover:shadow-pink-400/50' : ''}`}
     >
-      {/* {
-        isNoise && <span className="absolute inset-0 z-0 rounded-xl ring-4 ring-pink-400 ring-offset-[12px] animate-outer-ring"></span>
-      } */}
+      {isNoise && (
+        <>
+          <span className="absolute inset-0 z-0 rounded-xl ring-4 ring-pink-400 ring-offset animate-outer-ring"></span>
+          <span className="absolute inset-0 z-0 rounded-xl pointer-events-none overflow-hidden">
+            <span className="block w-full h-full rounded-xl border-2 border-transparent border-animated"></span>
+          </span>
+        </>
+      )}
       {/* Heart Card */}
       {indicator.id === 'heart' && (
         <div className='flex flex-col h-full justify-between'>
@@ -111,7 +116,7 @@ export const HealthIndicator: React.FC<HealthIndicatorProps> = ({ indicator }) =
       )}
       {/* Noise Card */}
       {indicator.id === 'noise' && (
-        <div className='flex flex-col h-full justify-between z-30'>
+        <div className='flex flex-col h-full justify-between'>
           <div className="flex items-center justify-between mb-2">
             <span className="flex items-center gap-1 text-xs font-semibold text-gray-400">
               <Waves className="w-4 h-4 mr-1 text-gray-400" />

@@ -1,8 +1,7 @@
 @keyframes innerRingFade {
   0%, 10%   { opacity: 1; }
-  15%, 65%  { opacity: 1; }  /* Stay visible while outer ring animates */
-  70%, 80% { opacity: 1; }
-  85%, 100% { opacity: 0; }
+  15%, 65%  { opacity: 1; }
+  70%, 100% { opacity: 0; }
 }
 
 @keyframes outerRingFade {
