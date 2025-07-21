@@ -1,0 +1,47 @@
+{
+  "alerts": [
+    {
+      "id": 1,
+      "icon": "device",
+      "count": 6,
+      "title": "Potential Indicators of Fatigue",
+      "description": "Immediate intervention needed. Notify officer, hydrate & lie down",
+      "button": "Show details"
+    },
+    {
+      "id": 2,
+      "icon": "timer",
+      "count": 2,
+      "title": "Non-Conformity Issues",
+      "description": "You may be overworked or low on rest. Take breaks and prioritize recovery to stay alert.",
+      "button": "View issues"
+    }
+  ],
+  "healthIndicators": [
+    {
+      "id": "heart",
+      "type": "HEART RISK",
+      "riskLevel": "HIGH",
+      "alert": "Tachycardia Alert",
+      "AHR": 128,
+      "RHR": 45,
+      "AHRChange": 12,
+      "RHRChange": 5,
+      "unit": "bpm"
+    },
+    {
+      "id": "temperature",
+      "type": "TEMPERATURE RISK",
+      "riskLevel": "MODERATE",
+      "alert": "Exposure to High Heat",
+      "duration": "1:30 hrs"
+    },
+    {
+      "id": "noise",
+      "type": "NOISE INDEX",
+      "riskLevel": "CRITICAL",
+      "alert": "Exposure to Extreme noise",
+      "duration": "4:30 hrs"
+    }
+  ]
+} 
